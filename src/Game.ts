@@ -6,7 +6,11 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
+        //load background image
         this.load.image('background', 'house/bg_repeat_340x640.png')
+
+        //lad sprite sheet with texturePacker:
+        this.load.atlas('rocket-mouse', 'characters.rocket-mouse.png', 'characters/rocket-mouse.json')
     }
 
     create() {
