@@ -1,10 +1,11 @@
 import Phaser from 'phaser'
 import TextureKeys from './consts/TextureKeys'
 import SceneKeys from './consts/SceneKeys'
+import AnimationKeys from './consts/AnimationKeys'
 
 export default class Preloader extends Phaser.Scene{
     constructor(){
-        super('preloader')
+        super(SceneKeys.Preloader)
     }
 
     preload() {
@@ -17,9 +18,9 @@ export default class Preloader extends Phaser.Scene{
     create() {
         //Mouse run animation
         this.anims.create({
-            key: 'rocket-mouse-run', //name key of the animation
+            key: AnimationKeys.RocketMouseRun, //name key of the animation
             //helper to generate frames
-            frames: this.anims.generateFrameNames('rocket-mouse', {
+            frames: this.anims.generateFrameNames(TextureKeys.RocketMouse, {
                 start: 1,
                 end: 4,
                 prefix: 'rocketmouse_run',
