@@ -13,8 +13,8 @@ export default class Game extends Phaser.Scene {
         const width = this.scale.width
         const height = this.scale.height
 
-        //creating the background TileSprite
-        this.add.tileSprite(0,0,width,height,'background').setOrigin(0)
+        //add background, setting it to the size of the game screen and fixed to the camera:
+        this.add.tileSprite(0, 0, width, height, TextureKeys.Background).setOrigin(0, 0).setScrollFactor(0, 0)
 
         const mouse = this.physics.add.sprite(width * 0.2, height, TextureKeys.RocketMouse, 'rocketmouse_fly01.png').play(AnimationKeys.RocketMouseRun)
 
@@ -28,7 +28,6 @@ export default class Game extends Phaser.Scene {
 
         this.cameras.main.startFollow(mouse)
         this.cameras.main.setBounds(0, 0, Number.MAX_SAFE_INTEGER, height)
-        
 
     }
 }
