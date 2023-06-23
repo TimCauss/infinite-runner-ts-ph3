@@ -1,6 +1,8 @@
 enum TextureKeys {
     Background = 'background',
-    RocketMouse = 'rocket-mouse'
+    MouseHole = 'mouse-hole',
+    RocketMouse = 'rocket-mouse',
+
 }
 
 export default TextureKeys
