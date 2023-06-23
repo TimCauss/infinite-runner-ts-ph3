@@ -25,5 +25,10 @@ export default class Game extends Phaser.Scene {
         body.setVelocityX(200)
 
         this.physics.world.setBounds(0, 0, Number.MAX_SAFE_INTEGER, height - 30)
+
+        this.cameras.main.startFollow(mouse)
+        this.cameras.main.setBounds(0, 0, Number.MAX_SAFE_INTEGER, height)
+        
+
     }
 }
