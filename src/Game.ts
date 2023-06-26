@@ -3,6 +3,8 @@ import SceneKeys from "./consts/SceneKeys";
 import AnimationKeys from "./consts/AnimationKeys";
 import TextureKeys from "./consts/TextureKeys";
 import RocketMouse from "./game/RocketMouse";
+import LaserObstacle from "./game/LaserObstacle";
+import LaserObstacle from "./game/LaserObstacle";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -62,8 +64,11 @@ export default class Game extends Phaser.Scene {
 
     this.bookcases = [this.bookcase1, this.bookcase2];
 
-    const mouse = new RocketMouse(this, width * 0.5, height - 30)
-    this.add.existing(mouse)
+    const laserObstacle = new LaserObstacle(this, 900, 100);
+    this.add.existing(laserObstacle);
+
+    const mouse = new RocketMouse(this, width * 0.5, height - 30);
+    this.add.existing(mouse);
 
     const body = mouse.body as Phaser.Physics.Arcade.Body;
     body.setCollideWorldBounds(true);
@@ -166,5 +171,10 @@ export default class Game extends Phaser.Scene {
 
       this.bookcase2.visible = !overlap;
     }
+  }
+
+  private wrapLaserObstacle() {
+    const scrollX = this.cameras.main.scrollX;
+    const rightEdge = scrollX + this.scale.width;
   }
 }
