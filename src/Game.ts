@@ -97,6 +97,12 @@ export default class Game extends Phaser.Scene {
     if (this.mouseHole.x + this.mouseHole.width < scrollX) {
       this.mouseHole.x = Phaser.Math.Between(rightEdge + 100, rightEdge + 1000);
     }
+
+    const overlap = this.bookcases.find((bc) => {
+      return Math.abs(this.mouseHole.x - bc.x) <= bc.width;
+    });
+
+    this.mouseHole.visible = !overlap;
   }
 
   private wrapWindow() {
@@ -145,6 +151,12 @@ export default class Game extends Phaser.Scene {
         rightEdge + width,
         rightEdge + width + 800
       );
+
+      const overlap = this.windows.find((win) => {
+        return Math.abs(this.bookcase1.x - win.x) <= win.width;
+      });
+
+      this.bookcase1.visible = !overlap;
     }
 
     width = this.bookcase2.width * 2;
@@ -153,6 +165,12 @@ export default class Game extends Phaser.Scene {
         this.bookcase1.x + width,
         this.bookcase1.x + width + 800
       );
+
+      const overlap = this.windows.find((win) => {
+        return Math.abs(this.bookcase2.x - win.x) <= win.width;
+      });
+
+      this.bookcase2.visible = !overlap;
     }
   }
 }
