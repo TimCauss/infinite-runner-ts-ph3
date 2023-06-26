@@ -4,7 +4,6 @@ import AnimationKeys from "./consts/AnimationKeys";
 import TextureKeys from "./consts/TextureKeys";
 import RocketMouse from "./game/RocketMouse";
 import LaserObstacle from "./game/LaserObstacle";
-import LaserObstacle from "./game/LaserObstacle";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -17,6 +16,7 @@ export default class Game extends Phaser.Scene {
   private window2!: Phaser.GameObjects.Image;
   private bookcase1!: Phaser.GameObjects.Image;
   private bookcase2!: Phaser.GameObjects.Image;
+  private laserObstacle!: LaserObstacle;
 
   private bookcases: Phaser.GameObjects.Image[] = [];
   private windows: Phaser.GameObjects.Image[] = [];
@@ -64,8 +64,8 @@ export default class Game extends Phaser.Scene {
 
     this.bookcases = [this.bookcase1, this.bookcase2];
 
-    const laserObstacle = new LaserObstacle(this, 900, 100);
-    this.add.existing(laserObstacle);
+    this.laserObstacle = new LaserObstacle(this, 900, 100);
+    this.add.existing(this.laserObstacle);
 
     const mouse = new RocketMouse(this, width * 0.5, height - 30);
     this.add.existing(mouse);
@@ -87,6 +87,7 @@ export default class Game extends Phaser.Scene {
     this.wrapMouseHole();
     this.wrapWindow();
     this.wrapBookcases();
+    this.wrapLaserObstacle();
   }
 
   private wrapMouseHole() {
@@ -176,5 +177,16 @@ export default class Game extends Phaser.Scene {
   private wrapLaserObstacle() {
     const scrollX = this.cameras.main.scrollX;
     const rightEdge = scrollX + this.scale.width;
+
+    const width = this.laserObstacle.width;
+
+    if (this.laserObstacle.x + width < scrollX) {
+      this.laserObstacle.x = Phaser.Math.Between(
+        rightEdge + width,
+        rightEdge + width + 1000
+      );
+
+      this.laserObstacle.y = Phaser.Math.Between(0, 300);
+    }
   }
 }
