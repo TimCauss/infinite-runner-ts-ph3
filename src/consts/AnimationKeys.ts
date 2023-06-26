@@ -1,5 +1,6 @@
 enum AnimationKeys {
-    RocketMouseRun = 'rocket-mouse-run'
+  RocketMouseRun = "rocket-mouse-run",
+  RocketFlamesOn = "rocker-flames-on",
 }
 
-export default AnimationKeys
+export default AnimationKeys;

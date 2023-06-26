@@ -45,6 +45,20 @@ export default class Preloader extends Phaser.Scene {
       repeat: -1, // -1 to loop forever
     });
 
+    //Flame animation:
+    this.anims.create({
+      key: AnimationKeys.RocketFlamesOn,
+      //generate frames:
+      frames: this.anims.generateFrameNames(TextureKeys.RocketMouse, {
+        start: 1,
+        end: 2,
+        prefix: "flame",
+        suffix: ".png",
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
+
     this.scene.start(SceneKeys.Game);
   }
 }
