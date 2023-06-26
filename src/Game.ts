@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import SceneKeys from "./consts/SceneKeys";
 import AnimationKeys from "./consts/AnimationKeys";
 import TextureKeys from "./consts/TextureKeys";
+import RocketMouse from "./game/RocketMouse";
 
 export default class Game extends Phaser.Scene {
   constructor() {
